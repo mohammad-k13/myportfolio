@@ -1,6 +1,6 @@
 # Shitanshu Kumar — Portfolio (Next.js)
 
-A dark, monospace-driven developer portfolio with an EN/FA language toggle (full RTL support), client-side project detail pages, and a contact page — ported from the HTML design prototype.
+A dark, monospace-driven developer portfolio with an EN/FA language toggle (full RTL support), client-side project detail pages, and a contact page — ported from the HTML design prototype. English is the default language; Persian is available from the header toggle and the last choice is remembered.
 
 ## Setup
 
