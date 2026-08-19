@@ -7,6 +7,7 @@ const ACCENT = 'oklch(0.78 0.11 85)';
 const BORDER = 'oklch(0.28 0 0)';
 const MUTED = 'oklch(0.55 0 0)';
 const MONO = "'JetBrains Mono', monospace";
+const LANG_STORAGE_KEY = 'portfolio-lang';
 
 const GithubIcon = ({ size = 14 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
@@ -30,6 +31,11 @@ export default function Portfolio() {
   const activeProject = activeIndex !== null ? t.projects[activeIndex] : null;
 
   useEffect(() => {
+    const saved = window.localStorage.getItem(LANG_STORAGE_KEY);
+    if (saved === 'en' || saved === 'fa') setLang(saved);
+  }, []);
+
+  useEffect(() => {
     document.documentElement.lang = lang;
     document.documentElement.dir = isFa ? 'rtl' : 'ltr';
   }, [lang, isFa]);
@@ -47,7 +53,10 @@ export default function Portfolio() {
   const goHome = (e: React.MouseEvent) => { e.preventDefault(); transition(() => { setActiveIndex(null); setPage('home'); }); };
   const goContact = (e: React.MouseEvent) => { e.preventDefault(); transition(() => { setActiveIndex(null); setPage('contact'); }); };
   const openDetail = (i: number) => (e: React.MouseEvent) => { e.preventDefault(); transition(() => { setActiveIndex(i); setPage('home'); }); };
-  const switchLang = (l: Lang) => transition(() => setLang(l));
+  const switchLang = (l: Lang) => {
+    window.localStorage.setItem(LANG_STORAGE_KEY, l);
+    transition(() => setLang(l));
+  };
 
   const rootStyle: CSSProperties = {
     fontFamily: isFa ? `'Vazirmatn', ${MONO}` : MONO,
