@@ -29,6 +29,11 @@ export default function Portfolio() {
   const isDetail = activeIndex !== null;
   const activeProject = activeIndex !== null ? t.projects[activeIndex] : null;
 
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = isFa ? 'rtl' : 'ltr';
+  }, [lang, isFa]);
+
   const nameLetters = useMemo(() => 'Shitanshu Kumar'.split('').map((c) => (c === ' ' ? '\u00A0' : c)), []);
 
   function transition(fn: () => void) {
