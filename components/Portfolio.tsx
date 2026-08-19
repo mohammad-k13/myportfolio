@@ -17,7 +17,7 @@ const GithubIcon = ({ size = 14 }: { size?: number }) => (
 type Page = 'home' | 'contact';
 
 export default function Portfolio() {
-  const [lang, setLang] = useState<Lang>('fa');
+  const [lang, setLang] = useState<Lang>('en');
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [page, setPage] = useState<Page>('home');
   const [fading, setFading] = useState(false);
