@@ -19,6 +19,8 @@ export type Blog = {
 
 export type Lang = 'en' | 'fa';
 
+export const DEFAULT_LANG: Lang = 'en';
+
 export type Copy = {
   navProjects: string; navBlogs: string; navContact: string;
   whoami: string;

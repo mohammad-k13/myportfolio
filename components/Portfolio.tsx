@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useMemo, CSSProperties } from 'react';
-import { COPY, TECH_STACK, CONNECT_LINKS, Lang } from '@/lib/copy';
+import { useState, useMemo, useEffect, CSSProperties } from 'react';
+import { COPY, TECH_STACK, CONNECT_LINKS, DEFAULT_LANG, Lang } from '@/lib/copy';
 
 const ACCENT = 'oklch(0.78 0.11 85)';
 const BORDER = 'oklch(0.28 0 0)';
@@ -17,7 +17,7 @@ const GithubIcon = ({ size = 14 }: { size?: number }) => (
 type Page = 'home' | 'contact';
 
 export default function Portfolio() {
-  const [lang, setLang] = useState<Lang>('en');
+  const [lang, setLang] = useState<Lang>(DEFAULT_LANG);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [page, setPage] = useState<Page>('home');
   const [fading, setFading] = useState(false);
