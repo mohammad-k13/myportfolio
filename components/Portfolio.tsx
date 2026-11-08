@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect, CSSProperties } from 'react';
-import { COPY, TECH_STACK, CONNECT_LINKS, DEFAULT_LANG, Lang } from '@/lib/copy';
+import { COPY, PROFILE, TECH_STACK, CONNECT_LINKS, DEFAULT_LANG, Lang } from '@/lib/copy';
 
 const ACCENT = 'oklch(0.78 0.11 85)';
 const BORDER = 'oklch(0.28 0 0)';
@@ -40,7 +40,7 @@ export default function Portfolio() {
     document.documentElement.dir = isFa ? 'rtl' : 'ltr';
   }, [lang, isFa]);
 
-  const nameLetters = useMemo(() => 'Shitanshu Kumar'.split('').map((c) => (c === ' ' ? '\u00A0' : c)), []);
+  const nameLetters = useMemo(() => PROFILE.name.split('').map((c) => (c === ' ' ? '\u00A0' : c)), []);
 
   function transition(fn: () => void) {
     setFading(true);
@@ -83,11 +83,10 @@ export default function Portfolio() {
       }}>
         <header style={{ ...wrap, padding: '28px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px dashed ${BORDER}` }}>
           <a href="#" onClick={goHome} style={{ fontSize: 15, fontWeight: 600, letterSpacing: '-0.02em', fontFamily: MONO, color: '#fafafa' }}>
-            shitanshu<span style={{ color: ACCENT }}>.</span>dev
+            mohammad<span style={{ color: ACCENT }}>.</span>dev
           </a>
           <nav style={{ display: 'flex', alignItems: 'center', gap: 24, fontSize: 13, color: MUTED }}>
             <a href="#projects" style={{ color: MUTED }}>{t.navProjects}</a>
-            <a href="#blogs" style={{ color: MUTED }}>{t.navBlogs}</a>
             <a href="#" onClick={goContact} style={{ color: MUTED }}>{t.navContact}</a>
             <div style={{ display: 'flex', fontSize: 12, fontFamily: MONO, border: `1px solid ${BORDER}`, borderRadius: 2, overflow: 'hidden' }}>
               <button onClick={() => switchLang('en')} style={{ border: 'none', background: !isFa ? ACCENT : 'transparent', color: !isFa ? '#0a0a0a' : MUTED, padding: '5px 10px', cursor: 'pointer', fontFamily: 'inherit' }}>EN</button>
@@ -117,7 +116,7 @@ export default function Portfolio() {
               <p style={{ fontSize: 17, color: 'oklch(0.65 0 0)', maxWidth: 560, lineHeight: 1.6, margin: '0 0 32px' }}>{t.heroDesc}</p>
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 40 }}>
                 <a href="#" onClick={goContact} style={{ background: ACCENT, color: '#0a0a0a', padding: '10px 20px', fontSize: 13, borderRadius: 2, fontWeight: 600 }}>{t.ctaContact}</a>
-                <a href="#" style={{ background: '#fafafa', color: '#0a0a0a', padding: '10px 20px', fontSize: 13, borderRadius: 2, fontWeight: 600 }}>{t.ctaResume}</a>
+                <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" style={{ background: '#fafafa', color: '#0a0a0a', padding: '10px 20px', fontSize: 13, borderRadius: 2, fontWeight: 600 }}>{t.ctaResume}</a>
               </div>
             </section>
 
@@ -146,7 +145,7 @@ export default function Portfolio() {
 
       {isDetail && activeProject && (
         <section style={{ ...wrap, padding: '0 24px 80px' }}>
-          <div style={{ aspectRatio: '16/8', background: 'repeating-linear-gradient(45deg, oklch(0.2 0 0), oklch(0.2 0 0) 8px, oklch(0.16 0 0) 8px, oklch(0.16 0 0) 16px)', border: `1px solid ${BORDER}`, borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: 'oklch(0.45 0 0)', marginBottom: 56 }}>screenshot</div>
+          <div style={{ aspectRatio: '16/8', background: 'repeating-linear-gradient(45deg, oklch(0.2 0 0), oklch(0.2 0 0) 8px, oklch(0.16 0 0) 8px, oklch(0.16 0 0) 16px)', border: `1px solid ${BORDER}`, borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: 'oklch(0.45 0 0)', marginBottom: 56 }}>{activeProject.name}</div>
 
           <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 18 }}>{t.techUsedLabel}</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 56 }}>
@@ -172,7 +171,7 @@ export default function Portfolio() {
           <section id="projects" style={{ ...wrap, padding: '0 24px 80px' }}>
             <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 24, borderBottom: `1px solid ${BORDER}`, paddingBottom: 12 }}>
               <div style={{ fontSize: 12, color: MUTED, letterSpacing: '0.08em', fontFamily: MONO }}>// {t.projectsLabel}</div>
-              <a href="#" style={{ fontSize: 12, color: MUTED }}>{t.viewAll}</a>
+              <a href={PROFILE.github} target="_blank" rel="noreferrer" style={{ fontSize: 12, color: MUTED }}>{t.viewAll}</a>
             </div>
             <div style={{ display: 'grid', gap: 1, background: BORDER, border: `1px solid ${BORDER}` }}>
               {t.projects.map((p, i) => (
@@ -181,7 +180,7 @@ export default function Portfolio() {
                   <span style={{ position: 'absolute', top: 152, left: -4, width: 10, height: 10, background: ACCENT }} />
                   <span style={{ position: 'absolute', top: -5, right: -3, width: 10, height: 10, background: ACCENT }} />
                   <span style={{ position: 'absolute', top: 152, right: -3, width: 10, height: 10, background: ACCENT }} />
-                  <div style={{ aspectRatio: '4/3', background: 'repeating-linear-gradient(45deg, oklch(0.2 0 0), oklch(0.2 0 0) 6px, oklch(0.16 0 0) 6px, oklch(0.16 0 0) 12px)', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, color: 'oklch(0.45 0 0)', textAlign: 'center', padding: 6 }}>screenshot</div>
+                  <div style={{ aspectRatio: '4/3', background: 'repeating-linear-gradient(45deg, oklch(0.2 0 0), oklch(0.2 0 0) 6px, oklch(0.16 0 0) 6px, oklch(0.16 0 0) 12px)', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, color: 'oklch(0.45 0 0)', textAlign: 'center', padding: 6 }}>{p.name.slice(0, 2)}</div>
                   <div>
                     <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 6 }}>{p.name}</div>
                     <div style={{ fontSize: 13, color: 'oklch(0.6 0 0)', lineHeight: 1.55, marginBottom: 8 }}>{p.desc}</div>
@@ -193,7 +192,7 @@ export default function Portfolio() {
             </div>
           </section>
 
-          <section id="blogs" style={{ ...wrap, padding: '0 24px 80px' }}>
+          {t.blogs.length > 0 && (<section id="blogs" style={{ ...wrap, padding: '0 24px 80px' }}>
             <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 24, borderBottom: `1px solid ${BORDER}`, paddingBottom: 12 }}>
               <div style={{ fontSize: 12, color: MUTED, letterSpacing: '0.08em', fontFamily: MONO }}>// {t.writingLabel}</div>
               <a href="#" style={{ fontSize: 12, color: MUTED }}>{t.viewAll}</a>
@@ -207,12 +206,7 @@ export default function Portfolio() {
                 <div style={{ fontSize: 13, color: 'oklch(0.58 0 0)', lineHeight: 1.5 }}>{b.excerpt}</div>
               </a>
             ))}
-          </section>
-
-          <section style={{ ...wrap, padding: '0 24px 80px' }}>
-            <div style={{ fontSize: 12, color: MUTED, marginBottom: 16, letterSpacing: '0.08em', fontFamily: MONO }}>// {t.activityLabel}</div>
-            <div style={{ border: `1px solid ${BORDER}`, borderRadius: 2, padding: 40, textAlign: 'center', fontSize: 12, color: 'oklch(0.45 0 0)' }}>{t.activityPlaceholder}</div>
-          </section>
+          </section>)}
         </>
       )}
 
@@ -236,7 +230,7 @@ export default function Portfolio() {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, paddingTop: 24, borderTop: `1px dashed ${BORDER}` }}>
             <div style={{ fontSize: 13, color: MUTED }}>{t.footerCredit}</div>
-            <a href="mailto:hello@example.com" style={{ fontSize: 13, color: ACCENT, direction: 'ltr' }}>{t.emailLine}</a>
+            <a href={`mailto:${PROFILE.email}`} style={{ fontSize: 13, color: ACCENT, direction: 'ltr' }}>{t.emailLine}</a>
           </div>
         </section>
       )}
